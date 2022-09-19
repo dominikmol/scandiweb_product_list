@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 function Home() {
   //  declaration of variables
-  let navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [data, setData] = useState({
     action:"delete"
