@@ -142,7 +142,7 @@ function AddProduct() {
         </form>
       </main>
       <footer>
-        <h6>&copy 2022 Dominik Molenda</h6>
+        <h6>&copy; 2022 Dominik Molenda</h6>
       </footer>
     </>
   );
