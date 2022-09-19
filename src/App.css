@@ -1,38 +1,88 @@
-.App {
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+h2 {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+tr>td {
+  padding-bottom: 25px;
+}
+
+p {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.custom-btn {
+  width: max-content;
+  height: max-content;
+  margin-left: 25px;
+  margin-right: 25px;
+  background-color: azure;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.custom-btn:hover {
+  background-color: aliceblue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.custom-btn:active {
+  background-color: lightcyan;
 }
 
-.App-link {
-  color: #61dafb;
+.item-container {
+  text-align: left;
+  width: 20%;
+  height: 20%;
+  border: 2px solid black;
+  float: left;
+  margin: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-btn {
+  text-align: right;
+}
+
+.form-body {
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 2px solid black;
+}
+
+.delete-checkbox {
+  text-align: left;
+}
+
+.center-input {
+  text-align: center;
+}
+
+#DVD {
+  visibility: hidden;
+}
+
+#FurnitureH {
+  visibility: hidden;
+}
+
+#FurnitureW {
+  visibility: hidden;
+}
+
+#FurnitureL {
+  visibility: hidden;
+}
+
+#Book {
+  visibility: hidden;
+}
+
+#root {
+  width: 90%;
+  margin: 0 auto;
 }
