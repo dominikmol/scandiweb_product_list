@@ -19,6 +19,12 @@ class AddItems extends Database
             $weight = "'$weight'";
         }
 
+        if ($dimensions == null) {
+            $dimensions = $nullVal;
+        } else {
+            $dimensions = "'$dimensions'";
+        }
+
         $sql = "INSERT INTO `product_list`(`sku`, `name`, `price`, `size`, `weight`, `dimensions`) VALUES ('$sku','$name','$price', $size, $weight, $dimensions);";
         $this->connection->query($sql);
     }

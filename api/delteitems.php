@@ -5,10 +5,14 @@ class DeleteItems extends Database
 {
     final public function mysqlQuery($sku = null)
     {
-        $str = implode(", ", $sku);
-        $str = str_replace("\"", "'", $str);
-        $sql = "DELETE FROM `product_list` WHERE `sku` IN ($str);";
-        $this->connection->query($sql);
+        if ($sku == null) {
+            exit();
+        } else {
+            $str = implode(", ", $sku);
+            $str = str_replace("\"", "'", $str);
+            $sql = "DELETE FROM `product_list` WHERE `sku` IN ($str);";
+            $this->connection->query($sql);
+        }   
     }
 
     public function __construct()

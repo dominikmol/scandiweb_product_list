@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'
 
 function Home() {
   //  declaration of variables
+  let navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [data, setData] = useState({
     action:"delete"
@@ -12,7 +13,7 @@ function Home() {
 
   //  fetching data about items from database
   useEffect(() => {
-    fetch("api/index.php")
+    fetch("http://localhost/scandiweb_product_list/api/index.php")
     .then(response => {
       return response.json();
     })
@@ -42,8 +43,8 @@ function Home() {
   //  sending data to php
   function handleSubmit(event){
     event.preventDefault();
-    axios.post("api/index.php", data);
-    setTimeout("location.reload()", 200);
+    axios.post("http://localhost/scandiweb_product_list/api/index.php", data);
+    setTimeout(navigate, 200, 0);
   }
 
   //  generating home page with form for mass delete

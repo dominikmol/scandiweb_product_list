@@ -24,7 +24,7 @@ abstract class Database
         $this->connection->close();
     }
 
-    public function __construct($servername = "localhost", $username = "id19568498_dbadmin", $password = "6>Z}&vH2wX\=jhmC", $dbname = "id19568498_products")
+    public function __construct($servername = "localhost", $username = "admin", $password = "2wsxCDE#21", $dbname = "products")
     {
         $this->servername = $servername; //"localhost";
         $this->username = $username; //"id19568498_dbadmin";

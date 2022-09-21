@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'
 
 function AddProduct() {
   //  declaration of variables
   let navigate = useNavigate();
-  const [data, setData] = useState({
+  let [data, setData] = useState({
     action:"add",
     sku:"",
     name:"",
@@ -14,8 +14,26 @@ function AddProduct() {
     height:"",
     width:"",
     length:"",
-    weight:""
-  })
+    weight:"",
+    dimensions:"",
+    type:""
+  });
+  let [items, setItems] = useState([]);
+
+  //  fetching data about items from database
+  useEffect(() => {
+    fetch("http://localhost/scandiweb_product_list/api/index.php")
+    .then(response => {
+      return response.json();
+    })
+    .then(
+      result => {
+        setItems(result)
+      }
+    ).catch(error => {
+      console.log("There was a problem with reading data: "+error);
+    });
+  }, [])
 
   //  handling changing data in from and allocating them to correct places in an object
   const handleChange = (event) => {
@@ -24,13 +42,37 @@ function AddProduct() {
 
   // sending data to php
   function handleSubmit(event){
+    let error = false;
     event.preventDefault();
-    axios.post("api/index.php", data);
-    window.setTimeout(navigate, 100, "/");
+    
+    //  checking if SKU is unique
+    items.forEach(item => {
+      if (data.sku === item.sku) {
+        alert("field SKU must be unique");
+        error = true;
+        return;
+      }
+    })
+
+    //  checking if SKU is not left empty
+    if (data.sku === "") {
+      alert("field SKU must not be empty");
+        error = true;
+    } 
+
+    //  sending data if there is no error
+    if (!error) {
+      if (data.height !== "" && data.width !== "" && data.length !== "") {
+        data.dimensions = data.height+"x"+data.width+"x"+data.length;
+      }
+      axios.post("http://localhost/scandiweb_product_list/api/index.php", data);
+      //window.setTimeout(navigate, 100, "/");
+    }
   }
 
   // handling switching product type and resetting data
-  function handleSwitchOption() {
+  const handleSwitchOption = (event) => {
+    setData({...data, [event.target.name]: event.target.value});
     const option = document.getElementById("productType").value;
     switch (option) {
       case "DVD":
@@ -109,7 +151,7 @@ function AddProduct() {
               <tr>
                 <td><label>Type Switcher</label></td>
                 <td className="center-input">
-                  <select id="productType" onChange={handleSwitchOption} defaultValue={'DEFAULT'} required>
+                  <select id="productType" name="type" onChange={handleSwitchOption} defaultValue={'DEFAULT'} required>
                     <option value="DEFAULT" disabled></option>
                     <option value="DVD">DVD</option>
                     <option value="Book">Book</option>
