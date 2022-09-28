@@ -58,6 +58,10 @@ p {
   text-align: left;
 }
 
+.delete-checkbox:hover {
+  cursor: pointer;
+}
+
 .center-input {
   text-align: center;
 }

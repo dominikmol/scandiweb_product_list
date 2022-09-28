@@ -22,7 +22,7 @@ function AddProduct() {
 
   //  fetching data about items from database
   useEffect(() => {
-    fetch("http://localhost/scandiweb_product_list/api/index.php")
+    fetch("api/index.php?action=getProducts")
     .then(response => {
       return response.json();
     })
@@ -65,8 +65,8 @@ function AddProduct() {
       if (data.height !== "" && data.width !== "" && data.length !== "") {
         data.dimensions = data.height+"x"+data.width+"x"+data.length;
       }
-      axios.post("http://localhost/scandiweb_product_list/api/index.php", data);
-      //window.setTimeout(navigate, 100, "/");
+      axios.get("api/index.php?data="+JSON.stringify(data));
+      window.setTimeout(navigate, 100, "/");
     }
   }
 

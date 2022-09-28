@@ -13,7 +13,7 @@ function Home() {
 
   //  fetching data about items from database
   useEffect(() => {
-    fetch("http://localhost/scandiweb_product_list/api/index.php")
+    fetch("api/index.php?action=getProducts")
     .then(response => {
       return response.json();
     })
@@ -41,10 +41,15 @@ function Home() {
   }
 
   //  sending data to php
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
-    axios.post("http://localhost/scandiweb_product_list/api/index.php", data);
-    setTimeout(navigate, 200, 0);
+    
+    if (data.sku != null) {
+      if (data.sku.length > 0) {
+        axios.get("api/index.php?data="+JSON.stringify(data));
+        setTimeout(navigate, 200, 0);
+      }
+    }
   }
 
   //  generating home page with form for mass delete
